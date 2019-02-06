@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Zilla Slab', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+.App{
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.App img{
+  width: 80% !important;  
+  height: auto;
+}
+.flex_container{
+  display: flex;
+  background-color: #111224 ;
+  border-top: 3px solid #00b5f0;
+  border-bottom:  3px solid #5f606c;
+  /* padding: 20px 10px; */
+  height: 50px;
+  color: aliceblue;
+  align-items: center !important;
+}
+.flex_container .title-text{
+  flex-grow: 1;
+  padding: 0 20px;
+  font-size: 20px;
+}
+.flex_container .links a{
+  color: aliceblue;
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+.login_container{
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+   width: 100%;
+   height: -webkit-fill-available;
+   background-image: radial-gradient(circle, lightgray, #18192e9f , #05050a);
+   opacity: .9;
+}
+.login_container .form_holder{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  /* background-color: #11122494; */
+  opacity: 0.9;
+  margin: 0 auto;
+  border-radius: 10px; 
+
+  background-image: radial-gradient( circle, #635959f2, #18192e9f , #05050a) !important;
+}
+
+
+.login_container .avtar{
+  background-image: url('http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png') !important;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  height: 160px;
+  width: 160px;
+  border: 3px solid white;
+  top: -80px;
+  opacity: .6;
+  /* background: #111224f1; */
+  border-radius: 50%; 
+  z-index: 1
+}
+

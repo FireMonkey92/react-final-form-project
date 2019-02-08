@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
+import RerenderCounter from './renderCounter';
 
 // <input className='input' placeholder='User Name' type='text'></input>
 // <input className='input' placeholder='Password' type='password'></input>
@@ -23,10 +24,13 @@ class login extends Component {
     sleep = (ms) => {
         new Promise(resolve => setTimeout(resolve, ms))
     }
+    // function to execute on the subbmition of the form
     showResults = async values => {
-        //await this.sleep(50000);
+        await this.sleep(50000);
         window.alert(JSON.stringify(values, undefined, 2));
     }
+
+    required = values => (values ? undefined : 'Required');
 
     render() {
         return (
@@ -34,17 +38,74 @@ class login extends Component {
                 <div className='form_holder'>
                     <div className='avtar'></div>
                     <div >
-                        <Form onSubmit={this.showResults}>
+                        <Form onSubmit={this.showResults}
+                            subscription={{
+                                submitting: true
+                            }} >
                             {({ handleSubmit, values, submitting }) =>
+
                                 <form className='form-container' onSubmit={handleSubmit}>
-                                    <Field className='input ' name='userId' component='input' placeholder='Enter User ID'
-                                        validate={ values=> values ? undefined : 'required'}
-                                    ></Field>
-                                    <Field className='input ' name='password' component='input' type='password' placeholder='Enter Password'
-                                    ></Field>
+                                    <RerenderCounter />
+                                    <Field
+                                        name='userId'
+                                        validate={this.required}
+                                        placeholder='Enter User ID'
+
+                                        subscription={{
+                                            value: true,
+                                            error: true,
+                                            invalid: true,
+                                            touched: true,
+                                            active: true
+                                        }}
+
+                                    >{({ input, meta, placeholder }) =>
+                                        <div >
+                                            <input {...input} className={(meta.active ? 'input active' : 'input') && (meta.invalid && meta.touched ? 'input invalid' : 'input')} placeholder={placeholder} />
+                                            {meta.error && meta.touched ? <span>{meta.error}</span> : ''}
+                                            <RerenderCounter />
+                                        </div>
+                                        }</Field>
+
+                                    <Field
+                                        name='password'
+                                        validate={this.required}
+                                        type='password'
+                                        placeholder='Enter Password'
+
+                                        subscription={{
+                                            value: true,
+                                            error: true,
+                                            invalid: true,
+                                            touched: true,
+                                            active: true
+                                        }}
+
+                                    >{({ input, meta, placeholder, type }) =>
+                                        <div>
+
+                                            <input {...input} className={meta.active ? 'input active' : 'input'} type={type} placeholder={placeholder} />
+                                            {meta.error && meta.touched ? <span>{meta.error}</span> : ''}
+                                            <RerenderCounter />
+                                        </div>
+                                        }</Field>
+
+                                    <div className='fc-row'>
+                                        <div className='fc1'>
+                                            <input className='input input_check' type='checkbox' id='remember_me'></input>
+                                            <label for='remember_me'>Remember Me</label>
+                                        </div>
+                                        <div className='fc2'>
+                                            <Link className='label' to='/forgetPass'>
+                                                Forget Password</Link>
+                                        </div>
+                                    </div>
+
+
                                     <button disabled={submitting} type='submit' className='input input_btn'>Login</button>
-                                    <pre>{JSON.stringify(values,undefined ,2)}</pre>
-                                </form> 
+                                    <FormSpy subscription={{ values: true }}>{({ values }) => <pre>{JSON.stringify(values, undefined, 2)}<RerenderCounter /></pre>}
+                                    </FormSpy>
+                                </form>
                             }
                         </Form>
                     </div>

@@ -15,7 +15,7 @@ body {
 }
 
 .App img {
-  width: 80% !important;
+  width: 50% !important;
   height: auto;
 }
 
@@ -49,18 +49,19 @@ body {
   width: 100%;
   height: -webkit-fill-available;
   background-image: radial-gradient(circle, lightgray, #18192e9f, #05050a);
-  opacity: .9;
+  /* opacity: .9; */
 }
 
 .login_container .form_holder {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   position: relative;
   width: 440px;
-  height: 400px;
+  height: fit-content;
+  padding-bottom: 70px;
   /* background-color: #11122494; */
-  opacity: 0.9;
-  margin: 0 auto;
+  /* opacity: 0.9; */
+  /* margin: 0 auto; */
   border-radius: 10px;
   background-image: linear-gradient(to bottom right, #05050a, #18192ec0, #05050a) !important;
 }
@@ -71,6 +72,7 @@ body {
   background-size: cover;
   position: absolute;
   height: 160px;
+  left: 31%;
   width: 160px;
   border: 3px solid white;
   top: -80px;
@@ -79,13 +81,15 @@ body {
   border-radius: 50%;
   z-index: 1
 }
+
 .login_container .form-container {
   margin-top: 100px;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   width: 100%;
 }
-.login_container .form-container .input{
+
+.login_container .form-container .input {
   background-color: #05050a;
   color: white;
   border: 2px #5f606c80 solid;
@@ -99,60 +103,100 @@ body {
   position: relative;
 }
 
-.login_container .form-container .input:focus{
+.login_container .form-container span {
+  color: #ff0303e8;
+  float: right;
+  margin-right: 32px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.login_container .form-container .input.active {
+  border: 3px solid rgb(195, 195, 195);
+}
+
+.login_container .form-container .input.invalid {
+  border: 3px solid ab0000bd;
+}
+
+.login_container .form-container .input:focus {
   outline: none;
   background-color: #05050a;
 }
 
-
-
-.login_container .form-container .input.input_btn{
-  background:  rgb(144, 144, 144) !important;
+.login_container .form-container .input.input_btn {
+  background: rgb(144, 144, 144) !important;
   color: #05050a !important;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
 }
 
-
-button :disabled,button[disabled]{
+button :disabled, button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
   cursor: not-allowed;
-  
 }
-.login_container .form-container .input.input_check{
+
+.login_container .form-container .input.input_check {
   margin-right: 5px;
 }
-label{
-  color: #bebed2 !important; 
+
+label {
+  color: #bebed2 !important;
   position: absolute;
   margin: 12px 0;
   /* font-size: 13px; */
 }
-.fc-row{
+
+.fc-row {
   display: flex;
   font-size: 15px;
 }
-.fc1{
+
+.fc1 {
   flex-grow: 1;
 }
-.fc2{
+
+.fc2 {
   padding: 10px;
 }
-.fc2 a{
+
+.fc2 a {
   /* flex-grow: 1; */
   margin-right: 30px;
   font-style: italic;
-  color: #bebed2 !important; 
+  color: #bebed2 !important;
 }
 
-pre{
-    border: 1px solid #ccc;
-    background: rgba(0,0,0,0.1);
-    color: #ccc;
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
-    padding: 20px;
-    margin: 5px 30px;
+pre {
+  border: 1px solid #ccc;
+  background: rgba(0, 0, 0, 0.1);
+  color: #ccc;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 5px 30px;
+}
+
+
+/* Render Counter Component CSS */
+.renderCounter {
+  border: white solid 2px;
+  height: 25px;
+  width: 25px;
+  opacity: 0.8;
+  right: 0;
+  float: right;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  background-color: transparent;
+  
+}
+.renderCounter div {
+  margin: 3px 6px;
+  font-weight: bold;
+  font-size: 14px !important;
+  position: absolute;
 }
